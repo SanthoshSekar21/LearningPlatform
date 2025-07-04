@@ -13,12 +13,24 @@ eureka:
 spring:
   cloud:
     gateway:
-      default-filters:
-        - AddRequestHeader=Authorization, {Authorization}
       routes:
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/users/**
-          filters:
-            - PreserveHostHeader
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/payments/**
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/courses/**
+        - id: course-access-service
+          uri: lb://course-access-service
+          predicates:
+            - Path=/access/**
+        - id: reporting-service
+          uri: lb://reporting-service
+          predicates:
+            - Path=/reports/**
