@@ -4,13 +4,6 @@ server:
 spring:
   application:
     name: api-gateway
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-spring:
   cloud:
     gateway:
       routes:
@@ -34,3 +27,8 @@ spring:
           uri: lb://reporting-service
           predicates:
             - Path=/reports/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
