@@ -14,23 +14,33 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/users/**
+            - name: Path
+              args:
+                pattern: /users/**
         - id: payment-service
           uri: lb://payment-service
           predicates:
-            - Path=/payments/**
+            - name: Path
+              args:
+                pattern: /payments/**
         - id: course-service
           uri: lb://course-service
           predicates:
-            - Path=/courses/**
+            - name: Path
+              args:
+                pattern: /courses/**
         - id: course-access-service
           uri: lb://course-access-service
           predicates:
-            - Path=/access/**
+            - name: Path
+              args:
+                pattern: /access/**
         - id: reporting-service
           uri: lb://reporting-service
           predicates:
-            - Path=/reports/**
+            - name: Path
+              args:
+                pattern: /reports/**
 
 eureka:
   client:
