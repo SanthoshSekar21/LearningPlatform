@@ -6,13 +6,15 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
         - id: user-service
-          uri: lb://USER-SERVICE
+          uri: lb://user-service
           predicates:
             - Path=/users/**
-          filters:
-            - RewritePath=/users/(?<segment>.*), /users/${segment}  
         - id: payment-service
           uri: lb://payment-service
           predicates:
@@ -43,8 +45,8 @@ management:
   endpoint:
     gateway:
       enabled: true
+
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.web.reactive.function.client: DEBUG
-
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
