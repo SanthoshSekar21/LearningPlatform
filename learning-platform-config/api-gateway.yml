@@ -43,3 +43,8 @@ management:
   endpoint:
     gateway:
       enabled: true
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+
